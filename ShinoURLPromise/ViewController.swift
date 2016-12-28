@@ -14,10 +14,11 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         let url = URL(string: "https://shino.space")!
         URLSession.shared.dataTask(with: url).flatMap { (_: Data?) -> Async<Data?> in
-            print("first callback")
+            print("First callback")
             let url = URL(string: "https://www.baidu.com")!
             return URLSession.shared.dataTask(with: url)
         }.execute { data in
+            print("Second callback")
             let str = String(data: data!, encoding: .utf8)!
             print(str)
         }
